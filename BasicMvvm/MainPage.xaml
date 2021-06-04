@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BasicMvvm"
+             Appearing="HandleAppearing"
+             x:Class="BasicMvvm.MainPage">
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel x:Name="_vm" />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringLongerThenToVisibleConverter x:Key="StringLongerThenToVisibleConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+
+        <ListView ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Title}" />
+                            <Label Text="{Binding Content}"
+                                   IsVisible="{Binding Title, Converter={StaticResource StringLongerThenToVisibleConverter}, ConverterParameter=3}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ContentView IsVisible="{Binding IsBusy}"
+                     Margin="0"
+                     BackgroundColor="Red">
+            <Label Text="Loading Data"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+        </ContentView>
+
+    </Grid>
+
+</ContentPage>
