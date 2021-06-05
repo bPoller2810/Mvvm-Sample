@@ -9,7 +9,7 @@ namespace BasicMvvm
 
         private readonly ApiClient _myApiClient;
 
-        public ObservableCollection<MyDataViewModel> Items = new();
+        public ObservableCollection<MyDataViewModel> Items { get; } = new();
 
         public MainPageViewModel()
         {

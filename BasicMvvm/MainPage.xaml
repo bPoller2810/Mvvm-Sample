@@ -21,8 +21,10 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Title}" />
+                            <Label Text="{Binding Title}"
+                                   TextColor="Black" />
                             <Label Text="{Binding Content}"
+                                   TextColor="Black"
                                    IsVisible="{Binding Title, Converter={StaticResource StringLongerThenToVisibleConverter}, ConverterParameter=3}" />
                         </StackLayout>
                     </ViewCell>
